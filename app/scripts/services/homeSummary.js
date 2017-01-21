@@ -1,50 +1,10 @@
 'use strict';
 
 angular.module('inspireAppApp')
-  .factory('HomeSummaryService', function() {
-    // var serviceUrl = '';
-    var rawData = [
-      {'12/1/2016': 60},
-      {'12/2/2016': 75},
-      {'12/3/2016': 72},
-      {'12/4/2016': 85},
-      {'12/5/2016': 87},
-      {'12/6/2016': 75},
-      {'12/7/2016': 71},
-      {'12/8/2016': 65},
-      {'12/9/2016': 62},
-      {'12/10/2016': 66},
-      {'12/11/2016': 61},
-      {'12/12/2016': 30},
-      {'12/13/2016': 31},
-      {'12/14/2016': 34},
-      {'12/15/2016': 85},
-      {'12/16/2016': 84},
-      {'12/17/2016': 89},
-      {'12/18/2016': 87},
-      {'12/19/2016': 75},
-      {'12/20/2016': 72},
-      {'12/21/2016': 72},
-      {'12/22/2016': 71},
-      {'12/23/2016': 71},
-      {'12/24/2016': 76},
-      {'12/25/2016': 75},
-      {'12/26/2016': 77},
-      {'12/27/2016': 82},
-      {'12/28/2016': 96},
-      {'12/29/2016': 45},
-      {'12/30/2016': 46},
-      {'12/31/2016': 76}
-    ];
-    var labels = rawData.map(Object.keys);
-    var data = [];
-
-    rawData.forEach(function (key, index) {
-      data.push(rawData[index][labels[index]]);
-    });
-
-    return {
-      labels: labels,
-      data: data
-    };
-  });
+  .factory('HomeSummaryService', ['$resource', function($resource) {
+    return $resource('https://stg-garcon.herokuapp.com/api/1/subscriptions/homescore/:homeId/summary',
+      {
+        homeId: '@id'
+      }
+    );
+  }]);

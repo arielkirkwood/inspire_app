@@ -14,22 +14,15 @@ angular.module('inspireAppApp')
     'HomeSummaryService',
     'HomeEnergyUsageService',
     function ($scope, $routeParams, HomeSummaryService, HomeEnergyUsageService) {
-      // var labels;
-      // var data = [];
+      if ($routeParams.homeId === '1') {
+        $scope.homeName = 'Philadelphia Apartment';
+      } else if ($routeParams.homeId === '2') {
+        $scope.homeName = 'Beach House';
+      }
 
-      // $http.get('https://stg-garcon.herokuapp.com/api/1/subscriptions/homescore/1/energy/usage/daily')
-      //   .then(function(response) {
-      //     labels = response.data.daily_energy_usage.map(Object.keys);
-      //
-      //   });
-
-      // return {
-      //   labels: labels,
-      //   data: data
-      // };
-
-      // $scope.labels = HomeEnergyUsageService.labels;
-      // $scope.data = HomeEnergyUsageService.data;
+      HomeSummaryService.get($routeParams, function(data) {
+        $scope.homeSummary = data;
+      });
 
       HomeEnergyUsageService.get($routeParams, function(data) {
           $scope.labels = data.daily_energy_usage.map(Object.keys);

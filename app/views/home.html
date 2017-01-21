@@ -1,5 +1,14 @@
-<h1>Home 1</h1>
+<div class="page-header">
+  <h1>{{ homeName }} <small>Home score: <strong>{{ homeSummary.score }}</strong></small></h1>
+</div>
+<p>{{ homeSummary.score_text }}</p>
 
 <canvas id="bar" class="chart chart-bar"
   chart-data="data" chart-labels="labels">
 </canvas>
+
+<ul>
+  <li>Average Daily Energy Usage: {{ homeSummary.average_daily_energy_usage }} kWh</li>
+  <li>Average Daily Temperature: {{ homeSummary.average_daily_temp }} degrees</li>
+</ul>
+
