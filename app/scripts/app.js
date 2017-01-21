@@ -22,12 +22,12 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/home', {
+      .when('/home/:homeId', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         controllerAs: 'home'
       })
       .otherwise({
-        redirectTo: '/home'
+        redirectTo: '/home/1'
       });
   });
